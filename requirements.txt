@@ -5,6 +5,7 @@ blinker==1.9.0
 Brlapi==0.8.3
 cachetools==5.5.2
 certifi==2020.6.20
+cffi==1.17.1
 chardet==4.0.0
 charset-normalizer==3.4.2
 chrome-gnome-shell==0.0.0
@@ -51,6 +52,7 @@ protobuf==6.31.1
 psutil==5.9.0
 pyarrow==20.0.0
 pycairo==1.20.1
+pycparser==2.22
 pycups==2.0.1
 pydbus==0.6.0
 pydeck==0.9.1

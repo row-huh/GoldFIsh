@@ -99,12 +99,16 @@ with col1:
         <p>Manage expenses in different currencies.</p>
     </div>""", unsafe_allow_html=True)
 
+
+
 with col2:
     st.markdown("""<div class="feature-card card-purple">
         <div class="emoji">📄</div>
         <h4>Receipt Scanning</h4>
         <p>Auto-capture data from your receipts using OCR.</p>
     </div>""", unsafe_allow_html=True)
+
+
 
 with col3:
     st.markdown("""<div class="feature-card card-pink">

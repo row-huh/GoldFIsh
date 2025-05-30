@@ -8,6 +8,8 @@ def generate_pie_chart(df):
     ax.pie(summary, labels=summary.index, autopct="%1.1f%%", startangle=90)
     ax.axis("equal")
     return fig
+
+
 def generate_bar_chart(df):
     summary = df.groupby("Description")["Amount"].sum().sort_values()
     fig, ax = plt.subplots()

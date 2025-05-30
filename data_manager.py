@@ -1,11 +1,15 @@
 import pandas as pd
 from datetime import datetime
 
+
+
 def load_expenses(file_path="data/expenses.csv"):
     try:
         return pd.read_csv(file_path)
     except FileNotFoundError:
         return pd.DataFrame(columns=["Date", "Description", "Amount", "Currency"])
+
+
 
 def save_expense(entry_date, description, amount, currency, file_path="data/expenses.csv"):
     df = pd.DataFrame([{
@@ -20,6 +24,8 @@ def save_expense(entry_date, description, amount, currency, file_path="data/expe
     except FileNotFoundError:
         pass
     df.to_csv(file_path, index=False)
+
+
 
 def parse_bank_csv(uploaded_file):
     try:
