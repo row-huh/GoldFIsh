@@ -3,39 +3,122 @@ import pandas as pd
 from datetime import datetime
 
 st.set_page_config(page_title="Expense Tracker", layout="wide")
-st.title("💸 Personal Expense Tracker")
 
-if "expenses" not in st.session_state:
-    st.session_state.expenses = []
-
-st.sidebar.header("Add New Expense")
-with st.sidebar.form("expense_form"):
-    date = st.date_input("Date", value=datetime.today())
-    category = st.selectbox("Category", ["Food", "Transport", "Entertainment", "Bills", "Other"])
-    description = st.text_input("Description")
-    amount = st.number_input("Amount", min_value=0.0, format="%.2f")
-    submit = st.form_submit_button("Add Expense")
-
-if submit:
-    new_expense = {
-        "Date": date,
-        "Category": category,
-        "Description": description,
-        "Amount": amount
+# Pastel, colorful theme with eye-catching layout
+st.markdown("""
+    <style>
+    /* App background */
+    .stApp {
+        background: linear-gradient(to right, #fdfbfb, #ebedee);
+        color: #333;
+        font-family: 'Segoe UI', sans-serif;
     }
-    st.session_state.expenses.append(new_expense)
-    st.success("Expense added!")
 
-expense_df = pd.DataFrame(st.session_state.expenses)
+    /* Sidebar */
+    section[data-testid="stSidebar"] {
+        background: linear-gradient(to bottom, #f0f4f8, #dbe9f4);
+        color: #000;
+        border-right: 1px solid #ccc;
+    }
 
-if not expense_df.empty:
-    st.subheader("📊 Expense Summary")
-    st.dataframe(expense_df)
+    section[data-testid="stSidebar"] div[role="button"]:hover {
+        background-color: #e0f7fa !important;
+        color: #00796b !important;
+    }
 
-    total = expense_df["Amount"].sum()
-    st.metric("Total Spent", f"Rs. {total:.2f}")
+    /* Feature cards */
+    .feature-card {
+        padding: 1.8rem;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        text-align: center;
+        transition: transform 0.2s;
+        font-size: 1rem;
+        color: #333;
+        margin-top: 1rem;
+    }
 
-    category_summary = expense_df.groupby("Category")["Amount"].sum().reset_index()
-    st.bar_chart(category_summary.set_index("Category"))
-else:
-    st.info("No expenses added yet. Use the form on the left to add some!")
+    .feature-card:hover {
+        transform: scale(1.03);
+    }
+
+    .card-green {
+        background: #e6f4ea;
+        border-left: 6px solid #2ecc71;
+    }
+
+    .card-purple {
+        background: #f0e9ff;
+        border-left: 6px solid #9b59b6;
+    }
+
+    .card-pink {
+        background: #ffe9e9;
+        border-left: 6px solid #e74c3c;
+    }
+
+    .emoji {
+        font-size: 2.8rem;
+        margin-bottom: 0.5rem;
+    }
+
+    /* CTA Button */
+    .cta-button {
+        font-size: 1.2rem;
+        font-weight: bold;
+        padding: 0.8rem 1.8rem;
+        border-radius: 999px;
+        background: linear-gradient(to right, #36d1dc, #5b86e5);
+        color: white !important;
+        text-decoration: none;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+        display: inline-block;
+        margin-top: 1.2rem;
+        transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+# Header
+st.markdown("## 💰 Welcome to the Expense Tracker")
+st.markdown("Track your daily, weekly, or monthly expenses with smart insights and colorful charts.")
+st.divider()
+
+# Feature Cards
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.markdown("""<div class="feature-card card-green">
+        <div class="emoji">💵</div>
+        <h4>Multi-currency Support</h4>
+        <p>Manage expenses in different currencies.</p>
+    </div>""", unsafe_allow_html=True)
+
+with col2:
+    st.markdown("""<div class="feature-card card-purple">
+        <div class="emoji">📄</div>
+        <h4>Receipt Scanning</h4>
+        <p>Auto-capture data from your receipts using OCR.</p>
+    </div>""", unsafe_allow_html=True)
+
+with col3:
+    st.markdown("""<div class="feature-card card-pink">
+        <div class="emoji">📊</div>
+        <h4>Visual Analytics</h4>
+        <p>Interactive charts and spending summaries.</p>
+    </div>""", unsafe_allow_html=True)
+
+st.divider()
+
+# CTA Button
+st.markdown("### 👉 Use the sidebar to get started")
+st.markdown('<a href="#" class="cta-button">🚀 Let\'s Go</a>', unsafe_allow_html=True)
+
+# Footer
+st.markdown("---")
+st.caption("✨ Made with care to make your expenses colorful and clear.")
