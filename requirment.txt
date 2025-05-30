@@ -1,6 +1,0 @@
-# All pip dependencies
-streamlit
-pytesseract
-matplotlib
-pandas
-babel
