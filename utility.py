@@ -64,3 +64,28 @@ def generate_bar_chart(df):
     ax.set_title("Spending Summary")
     return fig
 
+
+
+
+import os
+from dotenv import load_dotenv
+
+
+_messages = [{"role": "system", "content": "The content you're receiving is text extracted from an image which is supposed to be a receipt. If it is not a receipt return 'Null' otherwise return the information formatted as {date:dd/mm/yyyy}, {Description:description example}, {Amount: 10.00}, {Currency: USD}"}]
+
+
+from google import genai
+
+load_dotenv()
+
+
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+
+
+def parse_ocr(ocr_text):
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents=ocr_text,
+    )
+
+    return(response.text)

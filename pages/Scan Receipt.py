@@ -1,9 +1,13 @@
+# implements ocr
+
 import streamlit as st
 from PIL import Image
 import pytesseract
 import io
 import re
 from datetime import datetime
+from utility import parse_ocr
+
 
 st.set_page_config(page_title="Receipt OCR", layout="centered")
 
@@ -23,9 +27,11 @@ if uploaded_file:
 
         # send text to gemini and ask it to boil it down to date, description, amount, currency
         # using gemini coz ocr only returns normal text and the possibilities of writing regex's for this situation are endless (trust me, i tried)
-
+        st.code(parse_ocr(text))
         
 
     st.markdown("### 📝 Raw OCR Text")
     st.code(text)
+
+
 
