@@ -1,5 +1,5 @@
 import streamlit as st
-from data_manager import load_expenses
+from utility import load_expenses
 
 st.set_page_config(page_title="All Expenses", layout="wide")
 st.title("📄 All Expenses")

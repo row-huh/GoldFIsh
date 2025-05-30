@@ -21,6 +21,11 @@ if uploaded_file:
     with st.spinner("Extracting text with OCR..."):
         text = pytesseract.image_to_string(image)
 
+        # send text to gemini and ask it to boil it down to date, description, amount, currency
+        # using gemini coz ocr only returns normal text and the possibilities of writing regex's for this situation are endless (trust me, i tried)
+
+        
+
     st.markdown("### 📝 Raw OCR Text")
     st.code(text)
 

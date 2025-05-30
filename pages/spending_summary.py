@@ -1,5 +1,5 @@
 import streamlit as st
-from data_manager import load_expenses
+from utility import load_expenses
 from charts import generate_pie_chart, generate_bar_chart  # assuming you saved them in charts.py
 
 st.set_page_config(page_title="Spending Summary", layout="wide")

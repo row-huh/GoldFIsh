@@ -1,5 +1,5 @@
 import streamlit as st
-from data_manager import parse_bank_csv, save_expense
+from utility import parse_bank_csv, save_expense
 
 st.set_page_config(page_title="Import Bank CSV", layout="wide")
 
