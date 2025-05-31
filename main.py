@@ -1,12 +1,13 @@
 import streamlit as st
-from ocr_reader import ocr_reader
-from currency_converter import currency_converter
+import pandas as pd
+from datetime import datetime
 
 st.set_page_config(page_title="Expense Tracker", layout="wide")
 
-# Custom CSS Styles
+# CSS Styling (your existing style)
 st.markdown("""
     <style>
+    /* App background */
     .stApp {
         background: linear-gradient(to right, #fdfbfb, #ebedee);
         color: #333;
@@ -62,8 +63,6 @@ st.markdown("""
         display: inline-block;
         margin-top: 1.2rem;
         transition: transform 0.2s ease, box-shadow 0.3s ease;
-        cursor: pointer;
-        border: none;
     }
     .cta-button:hover {
         transform: translateY(-2px);
@@ -72,6 +71,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+# Header
 st.markdown("## 💰 Welcome to the Expense Tracker")
 st.markdown("Track your daily, weekly, or monthly expenses with smart insights and colorful charts.")
 st.divider()
@@ -80,45 +80,36 @@ st.divider()
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.markdown("""
-        <div class="feature-card card-green">
-            <div class="emoji">💵</div>
-            <h4>Multi-currency Support</h4>
-            <p>Manage expenses in different currencies.</p>
-        </div>
-    """, unsafe_allow_html=True)
+    st.markdown("""<div class="feature-card card-green">
+        <div class="emoji">💵</div>
+        <h4>Multi-currency Support</h4>
+        <p>Manage expenses in different currencies.</p>
+    </div>""", unsafe_allow_html=True)
 
 with col2:
-    st.markdown("""
-        <div class="feature-card card-purple">
-            <div class="emoji">📄</div>
-            <h4>Receipt Scanning</h4>
-            <p>Auto-capture data from your receipts using OCR.</p>
-        </div>
-    """, unsafe_allow_html=True)
+    st.markdown("""<div class="feature-card card-purple">
+        <div class="emoji">📄</div>
+        <h4>Receipt Scanning</h4>
+        <p>Auto-capture data from your receipts using OCR.</p>
+    </div>""", unsafe_allow_html=True)
 
 with col3:
-    st.markdown("""
-        <div class="feature-card card-pink">
-            <div class="emoji">📊</div>
-            <h4>Visual Analytics</h4>
-            <p>Interactive charts and spending summaries.</p>
-        </div>
-    """, unsafe_allow_html=True)
+    st.markdown("""<div class="feature-card card-pink">
+        <div class="emoji">📊</div>
+        <h4>Visual Analytics</h4>
+        <p>Interactive charts and spending summaries.</p>
+    </div>""", unsafe_allow_html=True)
 
 st.divider()
 
-# Sidebar menu for navigation between OCR and Currency Converter
-menu = st.sidebar.selectbox("Select Feature", ["Home", "Receipt OCR", "Currency Converter"])
+# Interactive button for receipt scanning
+if st.button("🚀 Scan Your Receipt Now"):
+    st.write("📷 Starting OCR... (Here your OCR code will run)")
 
-if menu == "Home":
-    st.markdown("### 👉 Use the sidebar to get started")
+# CTA Button - This can remain a styled link or be replaced with st.button if you want interaction
+st.markdown("### 👉 Use the sidebar to get started")
+st.markdown('<a href="#" class="cta-button">🚀 Let\'s Go</a>', unsafe_allow_html=True)
 
-elif menu == "Receipt OCR":
-    ocr_reader()
-
-elif menu == "Currency Converter":
-    currency_converter()
-
+# Footer
 st.markdown("---")
 st.caption("✨ Made with care to make your expenses colorful and clear.")
