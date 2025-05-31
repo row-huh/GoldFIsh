@@ -4,7 +4,7 @@ from datetime import datetime
 
 st.set_page_config(page_title="Expense Tracker", layout="wide")
 
-# Pastel, colorful theme with eye-catching layout
+# CSS Styling (your existing style)
 st.markdown("""
     <style>
     /* App background */
@@ -13,20 +13,15 @@ st.markdown("""
         color: #333;
         font-family: 'Segoe UI', sans-serif;
     }
-
-    /* Sidebar */
     section[data-testid="stSidebar"] {
         background: linear-gradient(to bottom, #f0f4f8, #dbe9f4);
         color: #000;
         border-right: 1px solid #ccc;
     }
-
     section[data-testid="stSidebar"] div[role="button"]:hover {
         background-color: #e0f7fa !important;
         color: #00796b !important;
     }
-
-    /* Feature cards */
     .feature-card {
         padding: 1.8rem;
         border-radius: 16px;
@@ -37,32 +32,25 @@ st.markdown("""
         color: #333;
         margin-top: 1rem;
     }
-
     .feature-card:hover {
         transform: scale(1.03);
     }
-
     .card-green {
         background: #e6f4ea;
         border-left: 6px solid #2ecc71;
     }
-
     .card-purple {
         background: #f0e9ff;
         border-left: 6px solid #9b59b6;
     }
-
     .card-pink {
         background: #ffe9e9;
         border-left: 6px solid #e74c3c;
     }
-
     .emoji {
         font-size: 2.8rem;
         margin-bottom: 0.5rem;
     }
-
-    /* CTA Button */
     .cta-button {
         font-size: 1.2rem;
         font-weight: bold;
@@ -76,7 +64,6 @@ st.markdown("""
         margin-top: 1.2rem;
         transition: transform 0.2s ease, box-shadow 0.3s ease;
     }
-
     .cta-button:hover {
         transform: translateY(-2px);
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
@@ -99,16 +86,12 @@ with col1:
         <p>Manage expenses in different currencies.</p>
     </div>""", unsafe_allow_html=True)
 
-
-
 with col2:
     st.markdown("""<div class="feature-card card-purple">
         <div class="emoji">📄</div>
         <h4>Receipt Scanning</h4>
         <p>Auto-capture data from your receipts using OCR.</p>
     </div>""", unsafe_allow_html=True)
-
-
 
 with col3:
     st.markdown("""<div class="feature-card card-pink">
@@ -119,7 +102,11 @@ with col3:
 
 st.divider()
 
-# CTA Button
+# Interactive button for receipt scanning
+if st.button("🚀 Scan Your Receipt Now"):
+    st.write("📷 Starting OCR... (Here your OCR code will run)")
+
+# CTA Button - This can remain a styled link or be replaced with st.button if you want interaction
 st.markdown("### 👉 Use the sidebar to get started")
 st.markdown('<a href="#" class="cta-button">🚀 Let\'s Go</a>', unsafe_allow_html=True)
 
