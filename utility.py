@@ -100,7 +100,7 @@ def parse_ocr(ocr_text, image):
             "'Tendered', 'Total', or 'Change'. Return the result as a JSON list of objects with exactly these 4 fields per item: "
             "date, description, amount, and currency. "
             "If any of these fields is missing for an item, use the following defaults: "
-            "date: '1/1/2025', amount: 1, description: 'Null', currency: 'USD'. "
+            "date: '2025-01-01', amount: 1, description: 'Null', currency: 'USD'. "
             "Only include actual purchases in the result. Every item must include all four fields."
         )
     ]
