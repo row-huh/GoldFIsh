@@ -1,9 +1,8 @@
 import streamlit as st
-from data_manager import load_expenses
-from charts import generate_pie_chart, generate_bar_chart  # assuming you saved them in charts.py
+from utility import load_expenses
 
-st.set_page_config(page_title="Spending Summary", layout="wide")
-st.title("📊 Spending Summary")
+st.set_page_config(page_title="All Expenses", layout="wide")
+st.title("📄 All Expenses")
 
 # 💅 Theme and Styling
 st.markdown("""
@@ -34,24 +33,22 @@ st.markdown("""
         font-weight: 700;
         border-radius: 8px;
     }
+
+    /* Table scroll bar and font tweak */
+    .stDataFrame {
+        background: #fff;
+        border-radius: 10px;
+        padding: 1rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
     </style>
 """, unsafe_allow_html=True)
 
-# 📊 Load Data
-expenses = load_expenses()
-expenses = expenses[expenses["Amount"] > 0]  # Filter positive amounts only
+# 📄 Load and display expenses
+df = load_expenses()
 
-if not expenses.empty:
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.markdown("### 🥧 Pie Chart")
-        pie_fig = generate_pie_chart(expenses)
-        st.pyplot(pie_fig)
-
-    with col2:
-        st.markdown("### 📊 Bar Chart")
-        bar_fig = generate_bar_chart(expenses)
-        st.pyplot(bar_fig)
+if df.empty:
+    st.warning("⚠️ No expenses found.")
 else:
-    st.info("📭 No data to display. Please add some expenses.")
+    st.markdown("### 📋 Detailed Table of All Transactions")
+    st.dataframe(df, use_container_width=True)

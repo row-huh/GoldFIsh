@@ -1,6 +1,6 @@
 import streamlit as st
 from datetime import date
-from data_manager import save_expense
+from utility import save_expense
 
 st.set_page_config(page_title="Add Expense", layout="wide")
 st.title("➕ Add New Expense")
