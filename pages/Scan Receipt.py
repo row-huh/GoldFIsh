@@ -26,8 +26,8 @@ if uploaded_file:
         text = pytesseract.image_to_string(image)
 
         # send text to gemini and ask it to boil it down to date, description, amount, currency
-        # using gemini coz ocr only returns normal text and the possibilities of writing regex's for this situation are endless (trust me, i tried)
-        st.code(parse_ocr(text))
+        # using llama coz ocr only returns normal text and the possibilities of writing regex's for this situation are endless (trust me, i tried)
+        st.code(parse_ocr(text, image))
         
 
     st.markdown("### 📝 Raw OCR Text")

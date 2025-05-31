@@ -66,26 +66,37 @@ def generate_bar_chart(df):
 
 
 
-
 import os
 from dotenv import load_dotenv
 
-
-_messages = [{"role": "system", "content": "The content you're receiving is text extracted from an image which is supposed to be a receipt. If it is not a receipt return 'Null' otherwise return the information formatted as {date:dd/mm/yyyy}, {Description:description example}, {Amount: 10.00}, {Currency: USD}"}]
-
-
-from google import genai
+import google.generativeai as genai # Changed to import as genai for consistency
+from google.generativeai import upload_file
 
 load_dotenv()
 
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
+import io
 
-def parse_ocr(ocr_text):
-    response = client.models.generate_content(
-        model="gemini-2.0-flash",
-        contents=ocr_text,
+def parse_ocr(ocr_text, image):
+    # Convert PIL image to BytesIO
+    buffer = io.BytesIO()
+    image.save(buffer, format="PNG")
+    buffer.seek(0)
+    buffer.name = "receipt.png"  # still include name
+
+    # Explicitly set MIME type
+    my_file = upload_file(buffer, mime_type="image/png")
+
+    # Use genai.GenerativeModel directly, as the API key is now configured globally
+    model = genai.GenerativeModel("gemini-2.0-flash") 
+    response = model.generate_content(
+        contents=[
+            my_file,
+            "This image is a scanned receipt. The OCR text is:\n" + ocr_text,
+            "Extract and return only: date, description, amount, currency. Return it as JSON."
+        ]
     )
 
-    return(response.text)
+    return response.text
