@@ -26,12 +26,13 @@ if uploaded_file:
         text = pytesseract.image_to_string(image)
 
         # send text to gemini and ask it to boil it down to date, description, amount, currency
-        # using llama coz ocr only returns normal text and the possibilities of writing regex's for this situation are endless (trust me, i tried)
-        st.code(parse_ocr(text, image))
+        # using gemini coz ocr only returns normal text and the possibilities of writing regex's for this situation are endless (trust me, i tried)
+        formatted_ocr = (parse_ocr(text, image))
         
-
+        #TODO
+        # take the formatted ocr and write it down into expenses.csv with cols : Date, Description, Amount, Currency
+        # formatted ocr will return a json object which looks like this; {"date": dd/mm/yyyy, "Description": "some description of what the expense was", "Amount": 4.00, "Currency": USD}
+        # expenses.csv is in ../data/expenses.csv
+    
     st.markdown("### 📝 Raw OCR Text")
     st.code(text)
-
-
-
