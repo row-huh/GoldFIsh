@@ -6,6 +6,7 @@ import pytesseract
 import io
 import re
 from datetime import datetime
+# the actual function is in utility.py (pro tier good design decision - maybe)
 from utility import parse_ocr
 
 
