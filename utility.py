@@ -92,11 +92,19 @@ def parse_ocr(ocr_text, image):
     # Use genai.GenerativeModel directly, as the API key is now configured globally
     model = genai.GenerativeModel("gemini-2.0-flash") 
     response = model.generate_content(
-        contents=[
-            my_file,
-            "This image is a scanned receipt. The OCR text is:\n" + ocr_text,
-            "Extract and return only: date, description, amount, currency. Return it as JSON."
-        ]
-    )
+    contents=[
+        my_file,
+        "This image is a scanned receipt. The OCR text is:\n" + ocr_text,
+        (
+            "Extract and return only line items that represent actual products or services purchased — NOT payment details like 'Cash', "
+            "'Tendered', 'Total', or 'Change'. Return the result as a JSON list of objects with exactly these 4 fields per item: "
+            "date, description, amount, and currency. "
+            "If any of these fields is missing for an item, use the following defaults: "
+            "date: '2025-01-01', amount: 1, description: 'Null', currency: 'USD'. "
+            "Only include actual purchases in the result. Every item must include all four fields."
+        )
+    ]
+)
+
 
     return response.text
