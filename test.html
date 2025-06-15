@@ -1,0 +1,51 @@
+<style>
+    .full-card-button {
+  width: 100%;
+  background-color: #1a1a2e;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.full-card-button:hover {
+  background-color: #252545;
+  transform: translateY(-2px);
+}
+
+.full-card-button .icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.full-card-button .text h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+.full-card-button .text p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #ccc;
+}
+
+</style>
+
+<div class="container">
+  <form method="POST" action="/add_expense">
+    <button type="submit" class="full-card-button">
+      <div class="icon">➕</div>
+      <div class="text">
+        <h2>Add New Expense</h2>
+        <p>Quickly log your daily expenses with multi-currency support and smart categorization.</p>
+      </div>
+    </button>
+  </form>
+</div>

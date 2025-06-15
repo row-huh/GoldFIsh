@@ -1,7 +1,7 @@
 # Contains the content of the files : data_manager.py
 # and currency_converter.py
 # Those files have been deleted and functions of both are stored here
-
+import decimal
 import pandas as pd
 from datetime import datetime
 
@@ -63,6 +63,85 @@ def generate_bar_chart(df):
     ax.set_ylabel("Description")
     ax.set_title("Spending Summary")
     return fig
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
