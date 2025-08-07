@@ -3,8 +3,6 @@
 
 A modern, visually stunning expense tracker built with Streamlit. Effortlessly log, import, and visualize your spending with multi-currency support, OCR-powered receipt scanning, and beautiful charts.
 
----
-
 ## Features
 
 - **Add Expenses:**  
@@ -22,15 +20,6 @@ A modern, visually stunning expense tracker built with Streamlit. Effortlessly l
 - **View Expenses:**  
   Browse, filter, and analyze all your transactions in a clean, stylish table.
 
----
-
-## 🖼️ Screenshots
-
-![Add Expense](assets/screenshots/add-expense.png)  
-![Spending Summary](assets/screenshots/spending-summary.png) 
-
-
----
 
 ## 🛠️ Getting Started
 
@@ -38,7 +27,6 @@ A modern, visually stunning expense tracker built with Streamlit. Effortlessly l
    ```sh
    git clone https://github.com/yourusername/expense-tracker.git
    cd expense-tracker
-  
 
 2. **Install dependencies:**
    ```sh
